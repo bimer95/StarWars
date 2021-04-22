@@ -1,8 +1,19 @@
 import Vue from 'vue'
-import App from './App.vue'
 
-Vue.config.productionTip = false
+import router from '@/router'
+import store from '@/store'
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+import App from '@/components/App'
+
+window.errors = []
+window.onerror = err => {
+  console.error(err)
+  window.errors.push(err)
+}
+Vue.config.errorHandler = window.onerror
+
+
+const app = new Vue({ router, store, render: h => h(App) })
+
+
+app.$mount('#app')
