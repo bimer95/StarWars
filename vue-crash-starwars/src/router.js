@@ -1,23 +1,28 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Router from 'vue-router'
 
-// Instruct Vue to use the router plugin.
-Vue.use(VueRouter)
+import Home from './components/Home'
+import Person from './components/Person'
 
-const Home = () => import('@/components/Home')
-const Person = () => import('@/components/Person')
+Vue.use(Router);
 
 
-// Export a new Vue Router instance to be used in the application.
-export default new VueRouter({
+
+
+
+let router = new Router({
   routes: [
     {
       path: '/',
-      component: Vue.component('Home', Home)
+      name: 'Home',
+      component: Home
     },
     {
-      path: '/people/:id',
-      component: Vue.component('Person', Person)
+      path: '/people',
+      name: 'Person',
+      component: Person
     }
   ]
 })
+
+export default router;
